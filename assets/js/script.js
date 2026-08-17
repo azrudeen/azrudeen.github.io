@@ -192,3 +192,89 @@ if (isMobile && resumeObject) {
     </div>
   `;
 }
+
+/* ================================================================
+   HORIZONTAL PROJECT CARDS — behaviour
+   Paste this at the END of assets/js/script.js
+   Reuses your existing filter buttons / select dropdown (data-filter-btn,
+   data-select, data-select-item, data-selecct-value) and drives the new
+   .h-project-item cards. Also handles expand/collapse for details.
+   ================================================================ */
+
+(function () {
+  const hProjectItems = document.querySelectorAll("[data-filter-item].h-project-item");
+
+  const hCategoryMap = {
+    "all": "all",
+    "applications": "applications",
+    "web development": "web-development"
+  };
+
+  function hFilterFunc(selectedValue) {
+    const key = selectedValue.toLowerCase();
+    const target = hCategoryMap[key] || "all";
+
+    hProjectItems.forEach((item) => {
+      const category = item.dataset.category;
+      if (target === "all") {
+        item.classList.add("active");
+      } else if (category === target) {
+        item.classList.add("active");
+      } else {
+        item.classList.remove("active");
+      }
+    });
+  }
+
+  // Filter buttons (desktop)
+  const hFilterBtns = document.querySelectorAll("[data-filter-btn]");
+  let hLastActiveBtn = document.querySelector("[data-filter-btn].active");
+
+  hFilterBtns.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const selectedValue = this.innerText;
+      hFilterFunc(selectedValue);
+
+      if (hLastActiveBtn) hLastActiveBtn.classList.remove("active");
+      this.classList.add("active");
+      hLastActiveBtn = this;
+
+      const selectValueEl = document.querySelector("[data-selecct-value]");
+      if (selectValueEl) selectValueEl.innerText = selectedValue;
+    });
+  });
+
+  // Filter dropdown (mobile)
+  const hSelectItems = document.querySelectorAll("[data-select-item]");
+  hSelectItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      const selectedValue = this.innerText;
+      hFilterFunc(selectedValue);
+
+      const selectValueEl = document.querySelector("[data-selecct-value]");
+      if (selectValueEl) selectValueEl.innerText = selectedValue;
+
+      const selectBox = document.querySelector("[data-select]");
+      if (selectBox) selectBox.classList.remove("active");
+
+      if (hLastActiveBtn) hLastActiveBtn.classList.remove("active");
+      hFilterBtns.forEach((btn) => {
+        if (btn.innerText === selectedValue) {
+          btn.classList.add("active");
+          hLastActiveBtn = btn;
+        }
+      });
+    });
+  });
+
+  // Expand / collapse details
+  document.querySelectorAll(".h-project-item").forEach((item) => {
+    const toggles = item.querySelectorAll("[data-h-toggle]");
+    toggles.forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        item.classList.toggle("h-open");
+      });
+    });
+  });
+})();

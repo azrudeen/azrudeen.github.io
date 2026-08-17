@@ -4,11 +4,32 @@
 
 
 /**
- * copyright 2022 @codewithsadee
+ * copyright 2026 @codewithazrudeen
  */
 
 
+/* 1. Round the corners of your Portfolio Project Images */
+.project-img {
+  border-radius: 16px; /* You can change 16px to 8px or 12px for less rounding */
+  overflow: hidden;    /* Ensures the hover overlay and image respect the rounded corners */
+}
 
+.project-img img {
+  border-radius: 16px;
+  display: block;
+  width: 100%;
+}
+
+/* 2. Round the corners of your Sidebar Profile Avatar */
+.avatar-box {
+  border-radius: 20px; /* Use 50% here instead if you want a perfect circle */
+  overflow: hidden;
+}
+
+.avatar-box img {
+  border-radius: inherit;
+  display: block;
+}
 
 
 /*-----------------------------------*\
@@ -1978,4 +1999,306 @@ textarea.form-input::-webkit-resizer { display: none; }
   .resume-preview-frame {
     height: 420px;
   }
+}
+/* ================================================================
+   HORIZONTAL PROJECT CARDS
+   Paste this at the END of assets/css/style.css
+   Uses your site's existing CSS variables (defined in :root), with
+   safe fallbacks in case a variable name differs slightly on your build.
+   ================================================================ */
+
+.h-project-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.h-project-item { display: none; }
+.h-project-item.active { display: block; }
+
+.h-project-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 18px;
+  background: var(--eerie-black-2, hsl(240, 2%, 12%));
+  border: 1px solid var(--jet, hsl(0, 0%, 22%));
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.h-project-card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--orange-yellow-crayola, hsl(45, 100%, 72%));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.h-project-card:hover {
+  border-color: hsla(45, 100%, 72%, 0.35);
+  box-shadow: 0 8px 30px hsla(0, 0%, 0%, 0.35);
+  transform: translateY(-2px);
+}
+
+.h-project-card:hover::before { opacity: 1; }
+
+/* Thumbnail */
+.h-project-thumb {
+  flex-shrink: 0;
+  width: 160px;
+  height: 110px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--h-thumb-bg, var(--jet, hsl(0, 0%, 22%)));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h-project-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.h-thumb-icon {
+  font-size: 2rem;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.h-thumb-eye {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsla(0, 0%, 0%, 0.55);
+  color: var(--white-2, hsl(0, 0%, 98%));
+  font-size: 1.3rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.h-project-thumb:hover .h-thumb-eye { opacity: 1; }
+
+/* Body */
+.h-project-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.h-project-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.h-project-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.h-project-title {
+  color: var(--white-2, hsl(0, 0%, 98%));
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.h-project-category {
+  width: 100%;
+  color: var(--light-gray-70, hsla(0, 0%, 84%, 0.7));
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.h-badge {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+
+.h-badge-featured {
+  color: hsl(142, 71%, 65%);
+  background: hsla(142, 71%, 65%, 0.1);
+  border: 1px solid hsla(142, 71%, 65%, 0.3);
+}
+
+.h-badge-progress {
+  color: var(--orange-yellow-crayola, hsl(45, 100%, 72%));
+  background: hsla(45, 100%, 72%, 0.1);
+  border: 1px solid hsla(45, 100%, 72%, 0.3);
+}
+
+.h-project-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.h-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: var(--light-gray, hsl(0, 0%, 84%));
+  background: hsla(0, 0%, 100%, 0.04);
+  border: 1px solid var(--jet, hsl(0, 0%, 22%));
+  border-radius: 6px;
+  padding: 5px 10px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.h-link-btn:hover {
+  border-color: hsla(45, 100%, 72%, 0.4);
+  color: var(--orange-yellow-crayola, hsl(45, 100%, 72%));
+}
+
+.h-link-btn-live {
+  color: var(--orange-yellow-crayola, hsl(45, 100%, 72%));
+  background: hsla(45, 100%, 72%, 0.08);
+  border-color: hsla(45, 100%, 72%, 0.25);
+}
+
+.h-details-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--jet, hsl(0, 0%, 22%));
+  background: hsla(0, 0%, 100%, 0.04);
+  color: var(--light-gray-70, hsla(0, 0%, 84%, 0.7));
+  cursor: pointer;
+  transition: transform 0.25s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.h-details-btn:hover {
+  color: var(--orange-yellow-crayola, hsl(45, 100%, 72%));
+  border-color: hsla(45, 100%, 72%, 0.4);
+}
+
+.h-project-item.h-open .h-details-btn { transform: rotate(180deg); }
+.h-project-item.h-open .h-details-icon { color: var(--orange-yellow-crayola, hsl(45, 100%, 72%)); }
+
+.h-project-desc {
+  color: var(--light-gray, hsl(0, 0%, 84%));
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.h-tech-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+
+.h-tech-list li {
+  font-size: 0.65rem;
+  color: var(--light-gray-70, hsla(0, 0%, 84%, 0.7));
+  background: hsla(0, 0%, 100%, 0.03);
+  border: 1px solid var(--jet, hsl(0, 0%, 22%));
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.h-click-hint {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: var(--onyx, hsl(0, 0%, 27%));
+  margin: 0;
+  transition: color 0.25s ease;
+}
+
+.h-project-card:hover .h-click-hint {
+  color: var(--orange-yellow-crayola, hsl(45, 100%, 72%));
+}
+
+/* Expandable details panel */
+.h-project-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.h-project-item.h-open .h-project-details {
+  max-height: 600px;
+}
+
+.h-details-inner {
+  padding: 18px 18px 4px 180px;
+  color: var(--light-gray, hsl(0, 0%, 84%));
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.h-details-inner p { margin: 0 0 12px; }
+
+.h-highlights {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.h-highlights li {
+  font-size: 0.78rem;
+  color: var(--light-gray-70, hsla(0, 0%, 84%, 0.7));
+  padding-left: 14px;
+  position: relative;
+}
+
+.h-highlights li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--orange-yellow-crayola, hsl(45, 100%, 72%));
+}
+
+/* Responsive */
+@media (max-width: 580px) {
+  .h-project-card { flex-direction: column; }
+  .h-project-thumb { width: 100%; height: 160px; }
+  .h-details-inner { padding-left: 18px; }
+  .h-highlights { grid-template-columns: 1fr; }
 }

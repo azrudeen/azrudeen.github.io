@@ -75,7 +75,7 @@
             <div class="contact-info">
               <p class="contact-title">Email</p>
 
-              <a href="mailto:azrudeen342@gmail.com" class="contact-link">azrudeen342@gmail.com</a>
+              <a href="mailto:azrudeen.dev@gmail.com" class="contact-link">azrudeen.dev@gmail.com</a>
             </div>
 
           </li>
@@ -285,7 +285,7 @@
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Photography</h4>
+                <h4 class="h4 service-item-title">Projects</h4>
 
                 <p class="service-item-text">
                   I make high-quality photos of any category at a professional level.
@@ -538,149 +538,321 @@
 
 
 
-      <!--
-        - #PORTFOLIO
-      -->
+    <!--
+  ================================================================
+  HORIZONTAL PORTFOLIO SECTION
+  Replace your ENTIRE existing <section class="portfolio" ...> ... </section>
+  block in index.html with everything below.
+  Keep filter categories/data-category values exactly as your projects use them
+  (applications / web-development) — edit the 4 project cards' text, links,
+  and image paths to match your real projects.
+  ================================================================
+-->
+<section class="portfolio" data-page="portfolio">
 
-      <article class="portfolio" data-page="portfolio">
+  <h2 class="h2 article-title">Portfolio</h2>
 
-        <header>
-          <h2 class="h2 article-title">Portfolio</h2>
-        </header>
+  <ul class="filter-list">
+    <li class="filter-item">
+      <button class="active" data-filter-btn>All</button>
+    </li>
+    <li class="filter-item">
+      <button data-filter-btn>Applications</button>
+    </li>
+    <li class="filter-item">
+      <button data-filter-btn>Web development</button>
+    </li>
+  </ul>
 
-        <section class="projects">
+  <div class="filter-select-box">
+    <button class="filter-select" data-select>
+      <div class="select-value" data-selecct-value>Select category</div>
+      <div class="select-icon">
+        <ion-icon name="chevron-down"></ion-icon>
+      </div>
+    </button>
 
-          <ul class="filter-list">
+    <ul class="select-list">
+      <li class="select-item">
+        <button data-select-item>All</button>
+      </li>
+      <li class="select-item">
+        <button data-select-item>Applications</button>
+      </li>
+      <li class="select-item">
+        <button data-select-item>Web development</button>
+      </li>
+    </ul>
+  </div>
 
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
+  <ul class="h-project-list">
 
-            <li class="filter-item">
-              <button data-filter-btn>Applications</button>
-            </li>
+    <!-- Project 1 -->
+    <li class="h-project-item active" data-filter-item data-category="applications">
+      <div class="h-project-card">
 
-            <li class="filter-item">
-              <button data-filter-btn>Web development</button>
-            </li>
+        <button class="h-project-thumb" style="--h-thumb-bg: hsl(6, 51%, 45%)" data-h-toggle>
+          <img src="./assets/images/project-stoneware.jpg" alt="Stoneware app preview" loading="lazy" onerror="this.style.display='none'">
+          <span class="h-thumb-icon" aria-hidden="true">🏛️</span>
+          <span class="h-thumb-eye"><ion-icon name="eye-outline"></ion-icon></span>
+        </button>
 
-          </ul>
+        <div class="h-project-body">
+          <div class="h-project-top">
+            <div class="h-project-heading">
+              <h3 class="h-project-title">Stoneware</h3>
+              <span class="h-badge h-badge-featured">Featured</span>
+              <span class="h-project-category">Applications &middot; Personal Project</span>
+            </div>
 
-          <div class="filter-select-box">
-
-            <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value>Select category</div>
-
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
-              </div>
-
-            </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Applications</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web development</button>
-              </li>
-
-            </ul>
-
+            <div class="h-project-links">
+              <a href="https://github.com/azrudeen/Stoneware-APK" target="_blank" rel="noopener noreferrer" class="h-link-btn">
+                <ion-icon name="logo-github"></ion-icon>
+                <span>GitHub</span>
+              </a>
+              <button class="h-details-btn" data-h-toggle>
+                <ion-icon name="chevron-down" class="h-details-icon"></ion-icon>
+              </button>
+            </div>
           </div>
 
-          <ul class="project-list">
+          <p class="h-project-desc">
+            A full-featured Android e-commerce app for a stoneware brand. Includes user
+            authentication with login/signup flow, product catalog, cart management, and
+            order tracking.
+          </p>
 
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="https://github.com/azrudeen/Stoneware-APK" target="_blank" rel="noopener">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Projects/Applications-images/stoneware-showcase.png" alt="Stoneware Android e-commerce app login and sign-up screens" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Stoneware</h3>
-
-                <p class="project-category">Applications · Personal Project</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="https://github.com/azrudeen/Clock-App">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <div class="project-placeholder-icon">
-                    <ion-icon name="time-outline"></ion-icon>
-                  </div>
-                </figure>
-
-                <h3 class="project-title">Day-Night Clock</h3>
-
-                <p class="project-category">Web development · Personal Project</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <div class="project-placeholder-icon">
-                    <ion-icon name="construct-outline"></ion-icon>
-                  </div>
-                </figure>
-
-                <h3 class="project-title">Billing Web App</h3>
-
-                <p class="project-category">Web development · In Progress</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="https://github.com/azrudeen/Calculator-App" target="_blank" rel="noopener">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <div class="project-placeholder-icon">
-                    <ion-icon name="calculator-outline"></ion-icon>
-                  </div>
-                </figure>
-
-                <h3 class="project-title">Calculator App</h3>
-
-                <p class="project-category">Web development · Personal Project</p>
-
-              </a>
-            </li>
-
+          <ul class="h-tech-list">
+            <li>Kotlin</li>
+            <li>Android</li>
+            <li>Firebase</li>
+            <li>Firestore</li>
+            <li>Room DB</li>
+            <li>Material UI 3</li>
           </ul>
 
-        </section>
+          <p class="h-click-hint">Click to view full details <ion-icon name="arrow-forward-outline"></ion-icon></p>
+        </div>
+      </div>
 
-      </article>
+      <!-- Expandable details panel -->
+      <div class="h-project-details">
+        <div class="h-details-inner">
+          <p>
+            Stoneware is a complete Android e-commerce application built for a stoneware
+            retail brand. The app handles the full shopping journey — from user
+            registration and login to product browsing, cart management, and order
+            placement.
+          </p>
+          <p>
+            The authentication system uses Firebase Auth with email/password login and a
+            custom sign-up flow that validates user inputs in real time. The product
+            catalog fetches data from Firestore and renders it in a responsive grid.
+          </p>
+          <ul class="h-highlights">
+            <li>Firebase Auth with real-time validation</li>
+            <li>Firestore product catalog with live sync</li>
+            <li>Room DB for offline cart persistence</li>
+            <li>Material UI 3 components throughout</li>
+            <li>Custom login &amp; sign-up screens</li>
+            <li>Order tracking with status updates</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+
+    <!-- Project 2 -->
+    <li class="h-project-item active" data-filter-item data-category="web-development">
+      <div class="h-project-card">
+
+        <button class="h-project-thumb" style="--h-thumb-bg: hsl(240, 30%, 12%)" data-h-toggle>
+          <img src="./assets/images/project-daynight.jpg" alt="Day-Night Clock preview" loading="lazy" onerror="this.style.display='none'">
+          <span class="h-thumb-icon" aria-hidden="true">🌙</span>
+          <span class="h-thumb-eye"><ion-icon name="eye-outline"></ion-icon></span>
+        </button>
+
+        <div class="h-project-body">
+          <div class="h-project-top">
+            <div class="h-project-heading">
+              <h3 class="h-project-title">Day-Night Clock</h3>
+              <span class="h-project-category">Web development &middot; Personal Project</span>
+            </div>
+
+            <div class="h-project-links">
+              <a href="https://github.com/azrudeen/Clock-App" target="_blank" rel="noopener noreferrer" class="h-link-btn">
+                <ion-icon name="logo-github"></ion-icon>
+                <span>GitHub</span>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="h-link-btn h-link-btn-live">
+                <ion-icon name="open-outline"></ion-icon>
+                <span>Live Demo</span>
+              </a>
+              <button class="h-details-btn" data-h-toggle>
+                <ion-icon name="chevron-down" class="h-details-icon"></ion-icon>
+              </button>
+            </div>
+          </div>
+
+          <p class="h-project-desc">
+            An elegant real-time clock web app that adapts its visual theme based on the
+            time of day — light mode during daytime and dark mode at night.
+          </p>
+
+          <ul class="h-tech-list">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>CSS Animations</li>
+          </ul>
+
+          <p class="h-click-hint">Click to view full details <ion-icon name="arrow-forward-outline"></ion-icon></p>
+        </div>
+      </div>
+
+      <div class="h-project-details">
+        <div class="h-details-inner">
+          <p>
+            Day-Night Clock is a real-time web clock that automatically shifts its visual
+            theme based on the current hour. Between 6 AM and 7 PM the interface uses a
+            warm, soft light palette; after sunset it transitions to a deep dark mode.
+          </p>
+          <ul class="h-highlights">
+            <li>Automatic day/night theme switching</li>
+            <li>Real-time second-accurate clock</li>
+            <li>Smooth CSS transition animations</li>
+            <li>Zero dependencies — vanilla JS only</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+
+    <!-- Project 3 -->
+    <li class="h-project-item active" data-filter-item data-category="web-development">
+      <div class="h-project-card">
+
+        <button class="h-project-thumb" style="--h-thumb-bg: hsl(210, 60%, 15%)" data-h-toggle>
+          <img src="./assets/images/project-billing.jpg" alt="Billing Web App preview" loading="lazy" onerror="this.style.display='none'">
+          <span class="h-thumb-icon" aria-hidden="true">🧾</span>
+          <span class="h-thumb-eye"><ion-icon name="eye-outline"></ion-icon></span>
+        </button>
+
+        <div class="h-project-body">
+          <div class="h-project-top">
+            <div class="h-project-heading">
+              <h3 class="h-project-title">Billing Web App</h3>
+              <span class="h-badge h-badge-progress">In Progress</span>
+              <span class="h-project-category">Web development &middot; Personal Project</span>
+            </div>
+
+            <div class="h-project-links">
+              <button class="h-details-btn" data-h-toggle>
+                <ion-icon name="chevron-down" class="h-details-icon"></ion-icon>
+              </button>
+            </div>
+          </div>
+
+          <p class="h-project-desc">
+            A business billing and invoice management web application with client
+            management, itemised invoices, PDF export, and payment status tracking.
+          </p>
+
+          <ul class="h-tech-list">
+            <li>React</li>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>MongoDB</li>
+            <li>TailwindCSS</li>
+          </ul>
+
+          <p class="h-click-hint">Click to view full details <ion-icon name="arrow-forward-outline"></ion-icon></p>
+        </div>
+      </div>
+
+      <div class="h-project-details">
+        <div class="h-details-inner">
+          <p>
+            The Billing Web App is a work-in-progress full-stack application designed to
+            help small businesses manage their invoicing workflow entirely in the browser.
+          </p>
+          <ul class="h-highlights">
+            <li>Client profile management</li>
+            <li>Line-item invoice builder with tax calc</li>
+            <li>PDF export of completed invoices</li>
+            <li>JWT-based authentication</li>
+            <li>MongoDB Atlas cloud backend</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+
+    <!-- Project 4 -->
+    <li class="h-project-item active" data-filter-item data-category="web-development">
+      <div class="h-project-card">
+
+        <button class="h-project-thumb" style="--h-thumb-bg: hsl(220, 40%, 14%)" data-h-toggle>
+          <img src="./assets/images/project-calculator.jpg" alt="Calculator App preview" loading="lazy" onerror="this.style.display='none'">
+          <span class="h-thumb-icon" aria-hidden="true">🧮</span>
+          <span class="h-thumb-eye"><ion-icon name="eye-outline"></ion-icon></span>
+        </button>
+
+        <div class="h-project-body">
+          <div class="h-project-top">
+            <div class="h-project-heading">
+              <h3 class="h-project-title">Calculator App</h3>
+              <span class="h-project-category">Web development &middot; Personal Project</span>
+            </div>
+
+            <div class="h-project-links">
+              <a href="https://github.com/azrudeen/Calculator-App" target="_blank" rel="noopener noreferrer" class="h-link-btn">
+                <ion-icon name="logo-github"></ion-icon>
+                <span>GitHub</span>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="h-link-btn h-link-btn-live">
+                <ion-icon name="open-outline"></ion-icon>
+                <span>Live Demo</span>
+              </a>
+              <button class="h-details-btn" data-h-toggle>
+                <ion-icon name="chevron-down" class="h-details-icon"></ion-icon>
+              </button>
+            </div>
+          </div>
+
+          <p class="h-project-desc">
+            A sleek, responsive calculator with standard and scientific modes, keyboard
+            support, and smooth animations optimised for desktop and mobile.
+          </p>
+
+          <ul class="h-tech-list">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>CSS Grid</li>
+          </ul>
+
+          <p class="h-click-hint">Click to view full details <ion-icon name="arrow-forward-outline"></ion-icon></p>
+        </div>
+      </div>
+
+      <div class="h-project-details">
+        <div class="h-details-inner">
+          <p>
+            A clean, minimal calculator web app built as a deep-dive into vanilla
+            JavaScript event handling and CSS animation, with full keyboard support and a
+            responsive CSS Grid button layout.
+          </p>
+          <ul class="h-highlights">
+            <li>Standard and scientific calculator modes</li>
+            <li>Full keyboard input support</li>
+            <li>Press animation synced to keyboard events</li>
+            <li>CSS Grid responsive button layout</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+
+</section>
 
 
       <!--
@@ -730,7 +902,7 @@
               const message = this.message.value;
               const subject = encodeURIComponent('Portfolio contact from ' + name);
               const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
-              window.location.href = 'mailto:azrudeen342@gmail.com?subject=' + subject + '&body=' + body;
+              window.location.href = 'mailto:azrudeen.dev@gmail.com?subject=' + subject + '&body=' + body;
             });
           </script>
 
