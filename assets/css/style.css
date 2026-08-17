@@ -799,6 +799,7 @@ main {
   align-items: flex-start;
   gap: 15px;
   margin-bottom: 15px;
+  margin-top: 40px;
 }
 
 .download-button {
@@ -1978,10 +1979,26 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .resume-preview-frame {
   width: 100%;
-  height: 600px;
+/* Matches the aspect ratio of an A4 page, plus room for the PDF viewer toolbar.
+     If your resume is US Letter, you can use aspect-ratio: 8.5 / 11.5; */
+  aspect-ratio: 1 / 1.45; 
+  
+  /* Fallback height for older browsers that do not support aspect-ratio */
+  height: 1150px; 
+  
   border: 1px solid var(--jet);
   border-radius: 14px;
   background: var(--eerie-black-2);
+  
+  /* Optional: Ensures the iframe doesn't overflow its rounded corners */
+  overflow: hidden;
+
+ /*
+ old scrollable preview code
+ height: 600px;
+  border: 1px solid var(--jet);
+  border-radius: 14px;
+  background: var(--eerie-black-2); */
 }
 
 .resume-preview-fallback {
