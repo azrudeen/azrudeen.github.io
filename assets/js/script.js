@@ -278,3 +278,128 @@ if (isMobile && resumeObject) {
     });
   });
 })();
+
+/* ================================================================
+   PROJECT MEDIA GALLERY + LIGHTBOX
+   Works with any .h-gallery-item buttons that have:
+     data-full  = path to full-size image OR video file
+     data-type  = "image" or "video"
+   Items sharing the same .h-gallery (i.e. same project) are grouped so
+   next/prev navigates within that project's media only.
+   ================================================================ */
+
+(function () {
+  const lightbox = document.createElement("div");
+  lightbox.className = "h-lightbox";
+  lightbox.innerHTML = `
+    <div class="h-lightbox-content">
+      <button class="h-lightbox-close" aria-label="Close"><ion-icon name="close-outline"></ion-icon></button>
+      <button class="h-lightbox-prev" aria-label="Previous"><ion-icon name="chevron-back-outline"></ion-icon></button>
+      <button class="h-lightbox-next" aria-label="Next"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+      <div class="h-lightbox-media"></div>
+      <div class="h-lightbox-counter"></div>
+    </div>
+  `;
+  document.body.appendChild(lightbox);
+
+  const mediaBox = lightbox.querySelector(".h-lightbox-media");
+  const counterEl = lightbox.querySelector(".h-lightbox-counter");
+  const closeBtn = lightbox.querySelector(".h-lightbox-close");
+  const prevBtn = lightbox.querySelector(".h-lightbox-prev");
+  const nextBtn = lightbox.querySelector(".h-lightbox-next");
+
+  let currentGroup = [];
+  let currentIndex = 0;
+
+  function renderCurrent() {
+    const entry = currentGroup[currentIndex];
+    if (!entry) return;
+    mediaBox.innerHTML = "";
+
+    if (entry.type === "video") {
+      const video = document.createElement("video");
+      video.src = entry.full;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      mediaBox.appendChild(video);
+    } else {
+      const img = document.createElement("img");
+      img.src = entry.full;
+      img.alt = entry.alt || "";
+      mediaBox.appendChild(img);
+    }
+
+    counterEl.textContent = currentGroup.length > 1
+      ? (currentIndex + 1) + " / " + currentGroup.length
+      : "";
+
+    const multi = currentGroup.length > 1;
+    prevBtn.style.display = multi ? "flex" : "none";
+    nextBtn.style.display = multi ? "flex" : "none";
+  }
+
+  function stopAnyVideo() {
+    const v = mediaBox.querySelector("video");
+    if (v) v.pause();
+  }
+
+  function openLightbox(group, index) {
+    currentGroup = group;
+    currentIndex = index;
+    renderCurrent();
+    lightbox.classList.add("h-lightbox-open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    stopAnyVideo();
+    lightbox.classList.remove("h-lightbox-open");
+    mediaBox.innerHTML = "";
+    document.body.style.overflow = "";
+  }
+
+  function showNext() {
+    stopAnyVideo();
+    currentIndex = (currentIndex + 1) % currentGroup.length;
+    renderCurrent();
+  }
+
+  function showPrev() {
+    stopAnyVideo();
+    currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+    renderCurrent();
+  }
+
+  closeBtn.addEventListener("click", closeLightbox);
+  nextBtn.addEventListener("click", showNext);
+  prevBtn.addEventListener("click", showPrev);
+
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (!lightbox.classList.contains("h-lightbox-open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowRight") showNext();
+    if (e.key === "ArrowLeft") showPrev();
+  });
+
+  // Wire up every .h-gallery on the page independently
+  document.querySelectorAll(".h-gallery").forEach((galleryEl) => {
+    const items = Array.from(galleryEl.querySelectorAll(".h-gallery-item"));
+    const group = items.map((btn) => ({
+      full: btn.dataset.full,
+      type: btn.dataset.type || "image",
+      alt: btn.dataset.alt || ""
+    }));
+
+    items.forEach((btn, i) => {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        openLightbox(group, i);
+      });
+    });
+  });
+})();
